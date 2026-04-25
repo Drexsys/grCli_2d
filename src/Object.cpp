@@ -1,0 +1,39 @@
+//
+// Created by drexsys on 25.04.26.
+//
+
+#include "Object.h"
+
+Object::Object(short x, short y, char **sprite, short width, short height) {
+    position = new Point{x, y};
+    this->sprite = sprite;
+    size = new Size{width, height};
+}
+
+Object::~Object() {
+    if (sprite != nullptr && size != nullptr) {
+        for (short i = 0; i < size->height; i++)
+            delete[] sprite[i];
+
+        delete[] sprite;
+        sprite = nullptr;
+
+        delete size;
+        size = nullptr;
+    }
+
+    if (position != nullptr) {
+        delete position;
+        position = nullptr;
+    }
+}
+
+void Object::show(Screen *screen) const {
+    char** scr = screen->getPlane();
+
+    for (short y = position->y; y < size->height; y++) {
+        for (short x = position->x; x < size->width; x++) {
+            scr[y][x] = sprite[y][x];
+        }
+    }
+}
