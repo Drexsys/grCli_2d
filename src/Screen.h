@@ -10,6 +10,7 @@
 class Screen {
     Size *size;
     char **plane;
+    char **emptyPlane;
 
 public:
     Screen(short width, short height);
@@ -20,6 +21,5 @@ public:
 
     [[nodiscard]] char** getPlane() const;
 };
-
 
 #endif //GRCLI_2D_SCREEN_H

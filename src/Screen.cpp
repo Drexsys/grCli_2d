@@ -3,11 +3,28 @@
 //
 
 #include "Screen.h"
+
+#include <cstring>
 #include <iostream>
 
 Screen::Screen(short width, short height) {
     size = new Size{width, height};
     plane = nullptr;
+
+    emptyPlane = new char*[size->height];
+    plane = new char*[size->height];
+    for (short y = 0; y < size->height; y++) {
+        emptyPlane[y] = new char[size->width + 1];
+        plane[y] = new char[size->width + 1];
+
+        emptyPlane[y][size->width] = '\0';
+        plane[y][size->width] = '\0';
+
+        for (short x = 0; x < size->width; x++) {
+            emptyPlane[y][x] = ' ';
+            plane[y][x] = ' ';
+        }
+    }
 }
 
 Screen::~Screen() {
@@ -26,25 +43,8 @@ Screen::~Screen() {
 }
 
 void Screen::makeEmpty() {
-    if (size == nullptr)
-        return;
-
-    bool isInitPlane = true;
-
-    if (plane == nullptr) {
-        isInitPlane = false;
-        plane = new char*[size->height];
-    }
-
-    for (short y = 0; y < size->height; y++) {
-        if (!isInitPlane) {
-            plane[y] = new char[size->width + 1];
-            plane[y][size->width] = '\0';
-        }
-
-        for (short x = 0; x < size->width; x++) {
-            plane[y][x] = ' ';
-        }
+    for (int y = 0; y < size->height; ++y) {
+        std::memcpy(plane[y], emptyPlane[y], size->width * sizeof(char));
     }
 }
 
@@ -59,4 +59,3 @@ void Screen::print() const {
 char** Screen::getPlane() const {
     return plane;
 }
-
