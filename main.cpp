@@ -3,10 +3,21 @@
 #include "src/SString.h"
 #include "src/Button.h"
 
-//#include <iostream>
+#include<ncurses.h>
+
+void initNcurses() {
+    // Ініціалізація ncurses
+    initscr();
+    cbreak();           // Вимкнути буферизацію
+    noecho();           // Не показувати натиснуті клавіші
+    keypad(stdscr, TRUE); // Включити спеціальні клавіші
+    nodelay(stdscr, TRUE); // Неблокуючий ввід
+}
 
 int main() {
-    auto screen = new Screen(80, 24);
+    initNcurses();
+
+    auto screen = new Screen(80, 24, 2313682943);
 
     char **objectSpr = new char*[1];
     objectSpr[0] = new char[5]{'H', 'e', 'l', 'l', 'o'};
@@ -32,6 +43,7 @@ int main() {
     delete screen;
 
     //std::cout << "\033[2J\033[1;1H";
+    endwin();
 
     return 0;
 }

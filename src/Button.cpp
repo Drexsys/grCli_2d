@@ -27,3 +27,7 @@ void Button::choose(const bool isChoose) {
     sprite = defSprite;
     defSprite = temp;
 }
+
+bool Button::getChoose() const {
+    return isChosen;
+}
