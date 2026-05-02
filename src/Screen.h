@@ -12,8 +12,10 @@ class Screen {
     char **plane;
     char **emptyPlane;
 
+    const unsigned int FPS;
+
 public:
-    Screen(short width, short height);
+    Screen(short width, short height, unsigned int FPS);
     ~Screen();
 
     void makeEmpty();

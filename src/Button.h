@@ -16,6 +16,7 @@ public:
     Button(short x, short y, const std::string &text);
 
     void choose(bool isChoose);
+    bool getChoose() const;
 };
 
 

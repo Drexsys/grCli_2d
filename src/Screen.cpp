@@ -5,9 +5,25 @@
 #include "Screen.h"
 
 #include <cstring>
-#include <iostream>
+#include <unistd.h>
+#include <ncurses.h>
 
-Screen::Screen(short width, short height) {
+Screen::~Screen() {
+    if (plane != nullptr && size != nullptr) {
+        for (short y = 0; y < size->height; y++)
+            delete[] plane[y];
+
+        delete[] plane;
+        plane = nullptr;
+    }
+
+    if (size != nullptr) {
+        delete size;
+        size = nullptr;
+    }
+}
+
+Screen::Screen(short width, short height, const unsigned int FPS): FPS(FPS) {
     size = new Size{width, height};
     plane = nullptr;
 
@@ -27,21 +43,6 @@ Screen::Screen(short width, short height) {
     }
 }
 
-Screen::~Screen() {
-    if (plane != nullptr && size != nullptr) {
-        for (short y = 0; y < size->height; y++)
-            delete[] plane[y];
-
-        delete[] plane;
-        plane = nullptr;
-    }
-
-    if (size != nullptr) {
-        delete size;
-        size = nullptr;
-    }
-}
-
 void Screen::makeEmpty() {
     for (int y = 0; y < size->height; ++y) {
         std::memcpy(plane[y], emptyPlane[y], size->width * sizeof(char));
@@ -52,8 +53,12 @@ void Screen::print() const {
     if (plane == nullptr || size == nullptr)
         return;
 
+    erase();
     for (short y = 0; y < size->height; y++)
-        std::cout << plane[y] << std::endl;
+        mvaddstr(y, 0, plane[y]);
+    refresh();
+
+    usleep(FPS);
 }
 
 char** Screen::getPlane() const {
