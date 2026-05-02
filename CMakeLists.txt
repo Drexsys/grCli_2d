@@ -11,4 +11,6 @@ add_executable(grCli_2d main.cpp
         src/structers.h
         src/SString.cpp
         src/SString.h
+        src/Button.cpp
+        src/Button.h
 )

@@ -1,6 +1,7 @@
 #include "src/Screen.h"
 #include "src/Object.h"
 #include "src/SString.h"
+#include "src/Button.h"
 
 //#include <iostream>
 
@@ -13,10 +14,18 @@ int main() {
 
     const auto sstring = new SString(0, 2, "World!");
 
+    auto button = new Button(0, 4, "Button");
+    auto button1 = new Button(0, 5, "Button");
+
     screen->makeEmpty();
 
     object->show(screen);
     sstring->show(screen);
+
+    button->show(screen);
+
+    button1->choose(true);
+    button1->show(screen);
 
     screen->print();
 
