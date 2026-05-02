@@ -11,8 +11,8 @@ struct Point {
 };
 
 struct Size {
-    const short width;
-    const short height;
+    short width;
+    short height;
 };
 
 #endif //GRCLI_2D_STRUCTERS_H

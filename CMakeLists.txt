@@ -8,4 +8,7 @@ add_executable(grCli_2d main.cpp
         src/Screen.h
         src/Object.cpp
         src/Object.h
-        src/structers.h)
+        src/structers.h
+        src/SString.cpp
+        src/SString.h
+)

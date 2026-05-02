@@ -8,8 +8,12 @@
 #include "structers.h"
 #include "Screen.h"
 
+#include <string>
+
 class Object {
     Point *position;
+
+protected:
     char **sprite;
     Size *size;
 
@@ -18,6 +22,9 @@ public:
     ~Object();
 
     void show(Screen *screen) const;
+
+protected:
+    Object(short x, short y);
 };
 
 #endif //GRCLI_2D_OBJECT_H

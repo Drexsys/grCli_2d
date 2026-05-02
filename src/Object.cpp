@@ -10,6 +10,12 @@ Object::Object(short x, short y, char **sprite, short width, short height) {
     size = new Size{width, height};
 }
 
+Object::Object(short x, short y) {
+    position = new Point{x, y};
+    sprite = nullptr;
+    size = nullptr;
+}
+
 Object::~Object() {
     if (sprite != nullptr && size != nullptr) {
         for (short i = 0; i < size->height; i++)
@@ -31,9 +37,9 @@ Object::~Object() {
 void Object::show(Screen *screen) const {
     char** scr = screen->getPlane();
 
-    for (short y = position->y; y < size->height; y++) {
-        for (short x = position->x; x < size->width; x++) {
-            scr[y][x] = sprite[y][x];
+    for (short y = 0; y < size->height; y++) {
+        for (short x = 0; x < size->width; x++) {
+            scr[y + position->y][x + position->x] = sprite[y][x];
         }
     }
 }
