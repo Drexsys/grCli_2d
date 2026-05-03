@@ -8,12 +8,9 @@
 #include "structers.h"
 #include "Screen.h"
 
-#include <string>
-
 class Object {
-    Point *position;
-
 protected:
+    Point *position;
     char **sprite;
     Size *size;
 

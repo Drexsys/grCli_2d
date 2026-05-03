@@ -24,11 +24,18 @@ unsigned int Game::run() {
 
         switch (chooseAction()) {
             case 'e':
-                return 0;
+                return score->getScore();
+            case 'j':
+                dino->setJumping();
+                break;
+
             default: ;
         }
 
         score->increaseScore();
+        enemy->move();
+        dino->jump();
+
         draw();
     }
 }
@@ -36,18 +43,21 @@ unsigned int Game::run() {
 void Game::draw() const {
     screen->makeEmpty();
 
-    dino->show(screen);
     enemy->show(screen);
+    dino->show(screen);
 
     score->show(screen);
 
     screen->print();
 }
 
-char Game::chooseAction() {
+char Game::chooseAction() const {
     switch (keyPressed) {
         case 'q':
             return 'e';
+        case ' ':
+            return 'j';
+
         default:
             return ' ';
     }

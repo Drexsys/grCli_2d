@@ -23,7 +23,6 @@ int main() {
 
     auto screen = new Screen(80, 24, FPS);
     auto menu = new Menu(screen);
-    auto game = new Game(screen);
 
     while (true) {
         if (menu->getIsMenu()) {
@@ -32,14 +31,17 @@ int main() {
             else
                 break;
         } else {
+            auto game = new Game(screen);
+
             game->run();
             menu->setIsMenu(true);
+
+            delete game;
         }
     }
 
     delete screen;
     delete menu;
-    delete game;
 
     endwin();
 

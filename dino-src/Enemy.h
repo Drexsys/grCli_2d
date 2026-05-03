@@ -8,9 +8,12 @@
 #include "../src/Object.h"
 
 class Enemy: public Object {
+    unsigned short timer = 15;
 
 public:
     Enemy(short x, short y);
+
+    void move();
 };
 
 

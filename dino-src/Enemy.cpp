@@ -14,3 +14,14 @@ Enemy::Enemy(short x, short y) : Object(x, y) {
     sprite[3] = new char[]{' ', ' ', 'O', ' ', ' '};
     sprite[4] = new char[]{' ', ' ', 'O', ' ', ' '};
 }
+
+void Enemy::move() {
+    if (timer != 0) {
+        timer--;
+        return;
+    }
+    position->x--;
+
+    if (position->x < -5)
+        position->x = 80;
+}

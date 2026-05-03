@@ -11,3 +11,41 @@ Dino::Dino(short x, short y) : Object(x, y) {
     for (short i = 0; i < size->height; i++)
         sprite[i] = new char[]{'@', '@', '@', '@'};
 }
+
+void Dino::setJumping() {
+    if (!isFalling)
+        isJumping = true;
+}
+
+void Dino::jump() {
+    if (!isJumping && !isFalling) return;
+    if (isFalling) return fall();
+
+    if (timer != 0) {
+        timer--;
+        return;
+    }
+    timer = 3;
+    position->y--;
+    if (position->y == maxJump) {
+        isJumping = false;
+        isFalling = true;
+    }
+}
+
+void Dino::fall() {
+    if (flyingTimer != 0) {
+        flyingTimer--;
+        return;
+    }
+    if (timer != 0) {
+        timer --;
+        return;
+    }
+    timer = 3;
+    position->y++;
+    if (position->y == 17) {
+        isFalling = false;
+        flyingTimer = 5;
+    }
+}

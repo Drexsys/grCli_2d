@@ -37,9 +37,23 @@ Object::~Object() {
 void Object::show(Screen *screen) const {
     char** scr = screen->getPlane();
 
-    for (short y = 0; y < size->height; y++) {
-        for (short x = 0; x < size->width; x++) {
+    if (position->x + size->width < 0 || position->y + size->height < 0) return;
+    if (position->x > screen->getWidth() - 1 || position->y > screen->getHeight() - 1) return;
+
+    short startPosY = 0, startPosX = 0;
+
+    if (position->x < 0)
+        startPosX = short(-position->x);
+    if (position->y < 0)
+        startPosY = short(-position->y);
+
+    for (short y = startPosY; y < size->height; y++) {
+        for (short x = startPosX; x < size->width; x++) {
+            if (position->x + x > screen->getWidth() - 1)
+                break;
             scr[y + position->y][x + position->x] = sprite[y][x];
         }
+        if (position->y + y > screen->getHeight() - 1)
+            break;
     }
 }

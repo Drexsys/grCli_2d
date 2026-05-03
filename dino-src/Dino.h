@@ -8,9 +8,19 @@
 #include "../src/Object.h"
 
 class Dino: public Object {
+    bool isJumping = false;
+    bool isFalling = false;
+    unsigned short timer = 3;
+    unsigned short flyingTimer = 5;
+
+    const unsigned short maxJump = 10;
 
 public:
     Dino(short x, short y);
+
+    void jump();
+    void fall();
+    void setJumping();
 };
 
 

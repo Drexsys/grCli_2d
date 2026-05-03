@@ -3,7 +3,7 @@
 #include "src/SString.h"
 #include "src/Button.h"
 
-#include<ncurses.h>
+#include <ncurses.h>
 
 void initNcurses() {
     // Ініціалізація ncurses

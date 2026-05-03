@@ -27,7 +27,7 @@ public:
 
 private:
     void draw() const;
-    char chooseAction();
+    char chooseAction() const;
 };
 
 
