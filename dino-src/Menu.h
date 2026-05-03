@@ -17,7 +17,7 @@ class Menu {
     SString *lastResL;
     SString *bestResL;
 
-    int keyPressed;
+    int keyPressed = 0;
     bool isMenu = true;
 
 public:

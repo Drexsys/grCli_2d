@@ -3,20 +3,11 @@
 //
 
 #include "dino-src/Menu.h"
+#include "dino-src/Game.h"
 
-//#include <iostream>
 #include<ncurses.h>
 
 constexpr unsigned int FPS = 1000000 / 30;
-
-Screen* initScreen() {
-//    short width, height;
-
-  //  std::cout << "Enter screen width and height:" << std::endl;
-    //std::cin >> width >> height;
-
-    return new Screen(24, 80, FPS);
-}
 
 void initNurses() {
     // Ініціалізація ncurses
@@ -30,20 +21,25 @@ void initNurses() {
 int main() {
     initNurses();
 
-    auto screen = initScreen();
+    auto screen = new Screen(80, 24, FPS);
     auto menu = new Menu(screen);
+    auto game = new Game(screen);
 
     while (true) {
         if (menu->getIsMenu()) {
             if (menu->run())
-                menu->setIsMenu(true);
+                menu->setIsMenu(false);
             else
                 break;
+        } else {
+            game->run();
+            menu->setIsMenu(true);
         }
     }
 
     delete screen;
     delete menu;
+    delete game;
 
     endwin();
 

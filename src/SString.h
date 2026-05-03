@@ -11,6 +11,8 @@ class SString: public Object {
 
 public:
     SString(short x, short y, const std::string &text);
+
+    void setText(const std::string &text);
 };
 
 
