@@ -15,7 +15,10 @@ class Menu {
     Button *exit;
 
     SString *lastResL;
+    SString *lastResN;
     SString *bestResL;
+    SString *bestResN;
+    unsigned int bestRes = 0;
 
     int keyPressed = 0;
     bool isMenu = true;
@@ -24,7 +27,7 @@ public:
     Menu(Screen *screen);
     ~Menu();
 
-    bool run();
+    bool run(unsigned int res);
 
     [[nodiscard]] bool getIsMenu() const;
     void setIsMenu(bool value);

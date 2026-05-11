@@ -4,6 +4,7 @@
 
 #include "Menu.h"
 
+#include <chrono>
 #include<ncurses.h>
 
 Menu::Menu(Screen *screen): screen(screen) {
@@ -11,18 +12,28 @@ Menu::Menu(Screen *screen): screen(screen) {
     start->choose(true);
     exit = new Button(1, 6, "Exit");
 
-    lastResL = new SString(1, 8, "Last result: 0");
-    bestResL = new SString(1, 10, "Best result: 0");
+    lastResL = new SString(1, 8, "Last result:");
+    lastResN = new SString(13, 8, "");
+    bestResL = new SString(1, 10, "Best result:");
+    bestResN = new SString(13, 10, "0");
 }
 
 Menu::~Menu() {
     delete start;
     delete exit;
     delete lastResL;
+    delete lastResN;
     delete bestResL;
+    delete bestResN;
 }
 
-bool Menu::run() {
+bool Menu::run(unsigned int res) {
+    if (res > bestRes) {
+        bestRes = res;
+        bestResN->setText(std::to_string(bestRes));
+    }
+    lastResN->setText(std::to_string(res));
+
     while (true) {
         keyPressed = getch();
 
@@ -45,7 +56,10 @@ void Menu::draw() const {
     exit->show(screen);
 
     lastResL->show(screen);
+    lastResN->show(screen);
+
     bestResL->show(screen);
+    bestResN->show(screen);
 
     screen->print();
 }

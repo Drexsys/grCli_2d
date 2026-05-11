@@ -32,6 +32,9 @@ unsigned int Game::run() {
             default: ;
         }
 
+        if (dino->isCrossing(enemy))
+            return score->getScore();
+
         score->increaseScore();
         enemy->move();
         dino->jump();

@@ -57,3 +57,15 @@ void Object::show(Screen *screen) const {
             break;
     }
 }
+
+bool Object::isCrossing(Object *object) const {
+    if (this->position->x <= object->position->x && this->position->x + this->size->width >= object->position->x)
+        if (this->position->y <= object->position->y && this->position->y + this->size->height >= object->position->y)
+            return true;
+
+    if (object->position->x <= this->position->x && object->position->x + object->size->width >= this->position->x)
+        if (object->position->y <= this->position->y && object->position->y + object->size->height >= this->position->y)
+            return true;
+
+    return false;
+}
