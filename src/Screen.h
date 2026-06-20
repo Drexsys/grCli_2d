@@ -22,6 +22,9 @@ public:
     void print() const;
 
     [[nodiscard]] char** getPlane() const;
+
+    [[nodiscard]] int getWidth() const;
+    [[nodiscard]] int getHeight() const;
 };
 
 #endif //GRCLI_2D_SCREEN_H

@@ -64,3 +64,11 @@ void Screen::print() const {
 char** Screen::getPlane() const {
     return plane;
 }
+
+int Screen::getHeight() const {
+    return size->height;
+}
+
+int Screen::getWidth() const {
+    return size->width;
+}

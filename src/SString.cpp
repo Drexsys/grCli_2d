@@ -17,3 +17,14 @@ SString::SString(short x, short y, const std::string &text)
 
     size = new Size{lenText, 1};
 }
+
+void SString::setText(const std::string &text) {
+    if (text.length() != size->width) {
+        delete sprite[0];
+
+        size->width = short(text.length());
+        sprite[0] = new char[size->width];
+    }
+    for (short i = 0; i < size->width; i++)
+        sprite[0][i] = text[i];
+}

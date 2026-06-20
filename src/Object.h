@@ -8,12 +8,9 @@
 #include "structers.h"
 #include "Screen.h"
 
-#include <string>
-
 class Object {
-    Point *position;
-
 protected:
+    Point *position;
     char **sprite;
     Size *size;
 
@@ -22,6 +19,7 @@ public:
     ~Object();
 
     void show(Screen *screen) const;
+    bool isCrossing(Object *object) const;
 
 protected:
     Object(short x, short y);

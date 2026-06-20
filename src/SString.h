@@ -6,11 +6,14 @@
 #define GRCLI_2D_SSTRING_H
 
 #include "Object.h"
+#include <string>
 
 class SString: public Object {
 
 public:
     SString(short x, short y, const std::string &text);
+
+    void setText(const std::string &text);
 };
 
 
