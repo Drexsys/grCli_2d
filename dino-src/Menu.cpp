@@ -3,9 +3,10 @@
 //
 
 #include "Menu.h"
+#include "../src/Font.h"
 
 #include <chrono>
-#include<ncurses.h>
+#include <ncurses.h>
 
 Menu::Menu(Screen *screen): screen(screen) {
     start = new Button(1, 4, "Start");
@@ -13,9 +14,13 @@ Menu::Menu(Screen *screen): screen(screen) {
     exit = new Button(1, 6, "Exit");
 
     lastResL = new SString(1, 8, "Last result:");
-    lastResN = new SString(13, 8, "");
+    lastResN = new SString(14, 8, "");
     bestResL = new SString(1, 10, "Best result:");
-    bestResN = new SString(13, 10, "0");
+    bestResN = new SString(14, 10, "0");
+
+    Font* font = new Font("../font.txt");
+    logo = new BIGSTRING(40, 5, "dino", font);
+
 }
 
 Menu::~Menu() {
@@ -60,6 +65,8 @@ void Menu::draw() const {
 
     bestResL->show(screen);
     bestResN->show(screen);
+
+    logo->show(screen);
 
     screen->print();
 }

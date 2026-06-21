@@ -9,7 +9,8 @@ class BIGSTRING: public Object {
 
     Font* font;
     BigChar** word;
-    const std::string &text;
+    short wordLength;
+    
 
 public:
     BIGSTRING(short x, short y, const std::string &text, Font* font);

@@ -42,6 +42,13 @@ add_executable(dino dino-main.cpp
         src/SString.h
         src/Button.cpp
         src/Button.h
+        src/BIGSTRING.cpp
+        src/BIGSTRING.h
+        src/Font.cpp
+        src/Font.h
+        src/BigChar.cpp
+        src/BigChar.h
+
         dino-src/Dino.cpp
         dino-src/Dino.h
         dino-src/Enemy.cpp
