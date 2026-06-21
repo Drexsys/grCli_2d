@@ -15,6 +15,12 @@ add_executable(grCli_2d main.cpp
         src/SString.h
         src/Button.cpp
         src/Button.h
+        src/Font.cpp
+        src/Font.h
+        src/BigChar.cpp
+        src/BigChar.h
+        src/BIGSTRING.cpp
+        src/BIGSTRING.h
 )
 
 target_include_directories(grCli_2d PRIVATE ${CURSES_INCLUDE_DIRS})

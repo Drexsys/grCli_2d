@@ -15,4 +15,8 @@ struct Size {
     short height;
 };
 
+struct LetterInf: public Size {
+    char** sprite;
+};
+
 #endif //GRCLI_2D_STRUCTERS_H
