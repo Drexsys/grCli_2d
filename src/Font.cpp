@@ -36,6 +36,14 @@ Font::Font(const std::string &path) {
 
 }
 
+Font::~Font() {
+
+    for (auto &pair: letters) {
+        delete pair.second;
+    }
+
+}
+
 LetterInf* Font::findLetter(char ch) { 
     return this->letters[ch];
 }

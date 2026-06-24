@@ -15,6 +15,16 @@ BIGSTRING::BIGSTRING(short x, short y, const std::string &text, Font *font)
 
 }
 
+BIGSTRING::~BIGSTRING() {
+    
+    for (short i = 0; i < this->wordLength; i++)
+        delete word[i];
+
+    delete[] word;
+    delete position;
+
+}
+
 void BIGSTRING::show(Screen* screen) const {
 
     for (short i = 0; i < this->wordLength; i++) {

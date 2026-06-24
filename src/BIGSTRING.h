@@ -14,6 +14,7 @@ class BIGSTRING: public Object {
 
 public:
     BIGSTRING(short x, short y, const std::string &text, Font* font);
+    ~BIGSTRING();
 
     void show(Screen *screen) const override;
 

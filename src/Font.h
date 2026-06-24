@@ -11,6 +11,7 @@ class Font {
 
 public:
     Font(const std::string &path);
+    ~Font();
 
     LetterInf* findLetter(char ch);
 

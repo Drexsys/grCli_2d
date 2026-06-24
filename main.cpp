@@ -33,8 +33,8 @@ int main() {
     auto button = new Button(0, 4, "Button");
     auto button1 = new Button(0, 5, "Button");
 
-    auto bigChar = new BigChar(10, 10, 'a', testFont);
-    auto bString = new BIGSTRING(10, 13, "aaa", testFont);
+    auto bigChar = new BigChar(10, 10, 'd', testFont);
+    auto bString = new BIGSTRING(10, 13, "dddd", testFont);
 
     screen->makeEmpty();
 
@@ -50,8 +50,10 @@ int main() {
     bString->show(screen);
 
     screen->print();
-
+    
+    delete bString;
     delete screen;
+    delete testFont;
 
     endwin();
 
