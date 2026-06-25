@@ -21,6 +21,8 @@ add_executable(grCli_2d main.cpp
         src/BigChar.h
         src/BIGSTRING.cpp
         src/BIGSTRING.h
+        src/SecScreen.cpp
+        src/SecScreen.h
 )
 
 target_include_directories(grCli_2d PRIVATE ${CURSES_INCLUDE_DIRS})
