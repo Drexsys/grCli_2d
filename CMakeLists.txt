@@ -15,6 +15,14 @@ add_executable(grCli_2d main.cpp
         src/SString.h
         src/Button.cpp
         src/Button.h
+        src/Font.cpp
+        src/Font.h
+        src/BigChar.cpp
+        src/BigChar.h
+        src/BIGSTRING.cpp
+        src/BIGSTRING.h
+        src/SecScreen.cpp
+        src/SecScreen.h
 )
 
 target_include_directories(grCli_2d PRIVATE ${CURSES_INCLUDE_DIRS})
@@ -36,6 +44,13 @@ add_executable(dino dino-main.cpp
         src/SString.h
         src/Button.cpp
         src/Button.h
+        src/BIGSTRING.cpp
+        src/BIGSTRING.h
+        src/Font.cpp
+        src/Font.h
+        src/BigChar.cpp
+        src/BigChar.h
+
         dino-src/Dino.cpp
         dino-src/Dino.h
         dino-src/Enemy.cpp

@@ -69,3 +69,11 @@ bool Object::isCrossing(Object *object) const {
 
     return false;
 }
+
+Point* Object::getPosition() const {
+    return this->position;
+}
+
+Size* Object::getSize() const {
+    return this->size;
+}

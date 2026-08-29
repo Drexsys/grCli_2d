@@ -2,6 +2,10 @@
 #include "src/Object.h"
 #include "src/SString.h"
 #include "src/Button.h"
+#include "src/Font.h"
+#include "src/BigChar.h"
+#include "src/BIGSTRING.h"
+#include "src/SecScreen.h"
 
 #include <ncurses.h>
 
@@ -15,9 +19,14 @@ void initNcurses() {
 }
 
 int main() {
+    Font* testFont = new Font("../font.txt");
+
     initNcurses();
 
-    auto screen = new Screen(80, 24, 2313682943);
+    //unsigned int fps = 99999999U;
+    unsigned int fps = 9U;
+
+    auto screen = new Screen(80, 24, fps);
 
     char **objectSpr = new char*[1];
     objectSpr[0] = new char[5]{'H', 'e', 'l', 'l', 'o'};
@@ -28,9 +37,11 @@ int main() {
     auto button = new Button(0, 4, "Button");
     auto button1 = new Button(0, 5, "Button");
 
+    auto secScreen = new SecScreen(10, 10, 5, 5, '.');
+
     screen->makeEmpty();
 
-    object->show(screen);
+    object->show(secScreen);
     sstring->show(screen);
 
     button->show(screen);
@@ -38,11 +49,14 @@ int main() {
     button1->choose(true);
     button1->show(screen);
 
+    secScreen->show(screen);
+
     screen->print();
 
     delete screen;
+    delete testFont;
+    delete secScreen;
 
-    //std::cout << "\033[2J\033[1;1H";
     endwin();
 
     return 0;

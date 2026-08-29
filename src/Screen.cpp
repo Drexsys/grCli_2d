@@ -23,24 +23,39 @@ Screen::~Screen() {
     }
 }
 
-Screen::Screen(short width, short height, const unsigned int FPS): FPS(FPS) {
-    size = new Size{width, height};
-    plane = nullptr;
+Screen::Screen(short width, short height, const unsigned int FPS, char defChar)
+    : FPS(FPS), defChar(defChar) {
 
-    emptyPlane = new char*[size->height];
-    plane = new char*[size->height];
-    for (short y = 0; y < size->height; y++) {
-        emptyPlane[y] = new char[size->width + 1];
-        plane[y] = new char[size->width + 1];
+    this->size = new Size{ width, height };
 
-        emptyPlane[y][size->width] = '\0';
-        plane[y][size->width] = '\0';
+    this->initPlane();
+}
 
-        for (short x = 0; x < size->width; x++) {
-            emptyPlane[y][x] = ' ';
-            plane[y][x] = ' ';
+void Screen::initPlane() {
+
+    this->emptyPlane = new char*[this->size->height];
+    this->plane = new char*[this->size->height];
+
+    for (short y = 0; y < this->size->height; y++) {
+        this->emptyPlane[y] = new char[this->size->width + 1];
+        this->plane[y] = new char[this->size->width + 1];
+
+        this->emptyPlane[y][this->size->width] = '\0';
+        this->plane[y][this->size->width] = '\0';
+
+        for (short x = 0; x < this->size->width; x++) {
+            this->emptyPlane[y][x] = this->defChar;
+            this->plane[y][x] = this->defChar;
         }
     }
+
+}
+
+Screen::Screen(short width, short height, char defChar) 
+    : defChar(defChar), FPS(1) {
+    this->size = new Size{ width, height };
+
+    this->initPlane();
 }
 
 void Screen::makeEmpty() {
@@ -71,4 +86,8 @@ int Screen::getHeight() const {
 
 int Screen::getWidth() const {
     return size->width;
+}
+
+void Screen::setDefChar(char ch) {
+    this->defChar = ch;
 }

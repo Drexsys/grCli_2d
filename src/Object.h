@@ -18,8 +18,11 @@ public:
     Object(short x, short y, char **sprite, short width, short height);
     ~Object();
 
-    void show(Screen *screen) const;
+    virtual void show(Screen *screen) const;
     bool isCrossing(Object *object) const;
+
+    Point* getPosition() const;
+    Size* getSize() const;
 
 protected:
     Object(short x, short y);

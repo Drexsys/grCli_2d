@@ -7,6 +7,7 @@
 
 #include "../src/Screen.h"
 #include "../src/Button.h"
+#include "../src/BIGSTRING.h"
 
 class Menu {
     Screen *screen;
@@ -19,6 +20,8 @@ class Menu {
     SString *bestResL;
     SString *bestResN;
     unsigned int bestRes = 0;
+
+    BIGSTRING *logo;
 
     int keyPressed = 0;
     bool isMenu = true;

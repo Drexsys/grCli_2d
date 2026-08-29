@@ -8,14 +8,16 @@
 #include "structers.h"
 
 class Screen {
+protected:
     Size *size;
     char **plane;
     char **emptyPlane;
+    char defChar;
 
     const unsigned int FPS;
 
 public:
-    Screen(short width, short height, unsigned int FPS);
+    Screen(short width, short height, unsigned int FPS, char defChar = ' ');
     ~Screen();
 
     void makeEmpty();
@@ -25,6 +27,15 @@ public:
 
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;
+
+    void setDefChar(char ch);
+
+protected:
+    Screen(short width, short height, char defChar);
+
+private:
+    void initPlane();
+
 };
 
 #endif //GRCLI_2D_SCREEN_H
